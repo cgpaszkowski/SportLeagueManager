@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package footballmanager;
+package footballmanager.gui;
 
 /**
  *
@@ -37,18 +37,16 @@ public class CreateScreen extends javax.swing.JFrame {
         TeamsSpinner = new javax.swing.JSpinner();
         SportComboBox = new javax.swing.JComboBox<>();
         SportLabel = new javax.swing.JLabel();
-        jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
-        jMenu2 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(1030, 645));
+        setResizable(false);
 
         jLabel1.setFont(new java.awt.Font("Arial", 1, 36)); // NOI18N
         jLabel1.setText("Create A New League");
 
         LeagueLabel.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        LeagueLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        LeagueLabel.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         LeagueLabel.setText("League Name:");
 
         LeagueTextField.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
@@ -76,7 +74,7 @@ public class CreateScreen extends javax.swing.JFrame {
         SportComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Soccer", "Hockey(TBD)", "Volleyball(TBD)", "Basketball(TBD)" }));
 
         SportLabel.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        SportLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        SportLabel.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         SportLabel.setText("Select Sport:");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -95,7 +93,7 @@ public class CreateScreen extends javax.swing.JFrame {
                     .addComponent(LeagueLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(TeamsLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(SportLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(SportComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(LeagueTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -122,18 +120,10 @@ public class CreateScreen extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(SportComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(SportLabel))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 231, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 252, Short.MAX_VALUE)
                         .addComponent(NextButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
-
-        jMenu1.setText("File");
-        jMenuBar1.add(jMenu1);
-
-        jMenu2.setText("Edit");
-        jMenuBar1.add(jMenu2);
-
-        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -206,9 +196,6 @@ public class CreateScreen extends javax.swing.JFrame {
     private javax.swing.JLabel TeamsLabel;
     private javax.swing.JSpinner TeamsSpinner;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }
