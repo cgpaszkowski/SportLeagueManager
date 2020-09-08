@@ -55,10 +55,20 @@ public class WelcomeScreen extends javax.swing.JFrame {
         EditButton.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         EditButton.setText("Edit League");
         EditButton.setPreferredSize(new java.awt.Dimension(150, 50));
+        EditButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EditButtonActionPerformed(evt);
+            }
+        });
 
         ManageButton.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         ManageButton.setText("Manage League");
         ManageButton.setPreferredSize(new java.awt.Dimension(150, 50));
+        ManageButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ManageButtonActionPerformed(evt);
+            }
+        });
 
         CopyrightLabel.setText("© 2020. Christian Gilbert-Paszkowski.  v1.0.0");
 
@@ -115,8 +125,22 @@ public class WelcomeScreen extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void CreateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CreateButtonActionPerformed
-        // TODO add your handling code here:
+        CreateScreen create = new CreateScreen();
+        create.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_CreateButtonActionPerformed
+
+    private void EditButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditButtonActionPerformed
+        EditScreen edit = new EditScreen();
+        edit.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_EditButtonActionPerformed
+
+    private void ManageButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ManageButtonActionPerformed
+        ManageScreen manage = new ManageScreen();
+        manage.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_ManageButtonActionPerformed
 
     /**
      * @param args the command line arguments

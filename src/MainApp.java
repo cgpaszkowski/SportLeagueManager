@@ -1,11 +1,15 @@
 import footballmanager.ScheduleMaker;
 import footballmanager.Player;
 import footballmanager.Team;
+import footballmanager.gui.WelcomeScreen;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class MainApp {
 	public static void main(String[]args) {
+                
+                startUp();
+            
 		Scanner keyb = new Scanner(System.in);
 		
 		ArrayList<Team> league = new ArrayList<Team>();
@@ -56,4 +60,11 @@ public class MainApp {
 		schedule.leagueSchedule();
 		
 	}
+        
+        public static void startUp(){
+            
+            //open home screen
+            WelcomeScreen home = new WelcomeScreen();
+            home.setVisible(true);
+        }
 }
