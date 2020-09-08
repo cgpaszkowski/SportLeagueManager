@@ -5,6 +5,8 @@
  */
 package footballmanager.gui;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Christian
@@ -39,7 +41,6 @@ public class CreateScreen extends javax.swing.JFrame {
         SportLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(1030, 645));
         setResizable(false);
 
         jLabel1.setFont(new java.awt.Font("Arial", 1, 36)); // NOI18N
@@ -63,10 +64,20 @@ public class CreateScreen extends javax.swing.JFrame {
         NextButton.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         NextButton.setText("Next");
         NextButton.setPreferredSize(new java.awt.Dimension(100, 50));
+        NextButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                NextButtonActionPerformed(evt);
+            }
+        });
 
         ReturnButton.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         ReturnButton.setText("Return");
         ReturnButton.setPreferredSize(new java.awt.Dimension(100, 50));
+        ReturnButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ReturnButtonActionPerformed(evt);
+            }
+        });
 
         TeamsSpinner.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
 
@@ -150,6 +161,29 @@ public class CreateScreen extends javax.swing.JFrame {
     private void LeagueTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LeagueTextFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_LeagueTextFieldActionPerformed
+
+    private void ReturnButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ReturnButtonActionPerformed
+        WelcomeScreen home = new WelcomeScreen();
+        home.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_ReturnButtonActionPerformed
+
+    private void NextButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NextButtonActionPerformed
+
+        if (!LeagueTextField.getText().isEmpty()){
+            if ((Integer) TeamsSpinner.getValue() >= 2){
+                String name = LeagueTextField.getText();
+                int count = (Integer) TeamsSpinner.getValue();
+                String category = (String) SportComboBox.getSelectedItem();
+            }
+            else {
+                JOptionPane.showMessageDialog(SportComboBox, "Must Have At Least 2 Teams", "Error", HEIGHT);
+            }
+        }
+        else {
+            JOptionPane.showMessageDialog(SportComboBox, "Please Enter A League Name Before Proceeding", "Error", HEIGHT);
+        }
+    }//GEN-LAST:event_NextButtonActionPerformed
 
     /**
      * @param args the command line arguments
