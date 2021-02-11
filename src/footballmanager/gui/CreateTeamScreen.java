@@ -73,6 +73,11 @@ public class CreateTeamScreen extends javax.swing.JFrame {
         ReturnButton.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         ReturnButton.setText("Return");
         ReturnButton.setPreferredSize(new java.awt.Dimension(100, 50));
+        ReturnButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ReturnButtonActionPerformed(evt);
+            }
+        });
 
         jTable1.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -275,6 +280,12 @@ public class CreateTeamScreen extends javax.swing.JFrame {
     private void LeagueTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LeagueTextField2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_LeagueTextField2ActionPerformed
+
+    private void ReturnButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ReturnButtonActionPerformed
+        CreateLeagueScreen home = new CreateLeagueScreen();
+        home.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_ReturnButtonActionPerformed
 
     /**
      * @param args the command line arguments

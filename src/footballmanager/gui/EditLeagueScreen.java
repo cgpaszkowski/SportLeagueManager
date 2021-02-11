@@ -9,12 +9,12 @@ package footballmanager.gui;
  *
  * @author Christian
  */
-public class EditScreen extends javax.swing.JFrame {
+public class EditLeagueScreen extends javax.swing.JFrame {
 
     /**
      * Creates new form EditScreen
      */
-    public EditScreen() {
+    public EditLeagueScreen() {
         initComponents();
     }
 
@@ -83,6 +83,11 @@ public class EditScreen extends javax.swing.JFrame {
         ReturnButton.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         ReturnButton.setText("Return");
         ReturnButton.setPreferredSize(new java.awt.Dimension(100, 50));
+        ReturnButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ReturnButtonActionPerformed(evt);
+            }
+        });
 
         SelectLabel.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         SelectLabel.setText("Select League:");
@@ -142,6 +147,12 @@ public class EditScreen extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void ReturnButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ReturnButtonActionPerformed
+        WelcomeScreen home = new WelcomeScreen();
+        home.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_ReturnButtonActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -159,20 +170,21 @@ public class EditScreen extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(EditScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EditLeagueScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(EditScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EditLeagueScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(EditScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EditLeagueScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(EditScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EditLeagueScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new EditScreen().setVisible(true);
+                new EditLeagueScreen().setVisible(true);
             }
         });
     }

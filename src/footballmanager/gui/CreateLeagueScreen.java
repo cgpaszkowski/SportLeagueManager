@@ -5,18 +5,20 @@
  */
 package footballmanager.gui;
 
+import footballmanager.Team;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 /**
  *
  * @author Christian
  */
-public class CreateScreen extends javax.swing.JFrame {
+public class CreateLeagueScreen extends javax.swing.JFrame {
 
     /**
      * Creates new form CreateScreen
      */
-    public CreateScreen() {
+    public CreateLeagueScreen() {
         initComponents();
     }
 
@@ -175,6 +177,12 @@ public class CreateScreen extends javax.swing.JFrame {
                 String name = LeagueTextField.getText();
                 int count = (Integer) TeamsSpinner.getValue();
                 String category = (String) SportComboBox.getSelectedItem();
+                
+                ArrayList<Team> league = new ArrayList<Team>();
+                
+                CreateTeamScreen create = new CreateTeamScreen();
+                create.setVisible(true);
+                this.setVisible(false);
             }
             else {
                 JOptionPane.showMessageDialog(SportComboBox, "Must Have At Least 2 Teams", "Error", HEIGHT);
@@ -202,20 +210,21 @@ public class CreateScreen extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(CreateScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CreateLeagueScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(CreateScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CreateLeagueScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(CreateScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CreateLeagueScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(CreateScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CreateLeagueScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new CreateScreen().setVisible(true);
+                new CreateLeagueScreen().setVisible(true);
             }
         });
     }

@@ -125,19 +125,19 @@ public class WelcomeScreen extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void CreateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CreateButtonActionPerformed
-        CreateScreen create = new CreateScreen();
+        CreateLeagueScreen create = new CreateLeagueScreen();
         create.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_CreateButtonActionPerformed
 
     private void EditButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditButtonActionPerformed
-        EditScreen edit = new EditScreen();
+        EditLeagueScreen edit = new EditLeagueScreen();
         edit.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_EditButtonActionPerformed
 
     private void ManageButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ManageButtonActionPerformed
-        ManageScreen manage = new ManageScreen();
+        ManageLeagueScreen manage = new ManageLeagueScreen();
         manage.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_ManageButtonActionPerformed
