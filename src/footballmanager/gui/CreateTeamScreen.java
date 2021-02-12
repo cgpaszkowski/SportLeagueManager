@@ -5,6 +5,11 @@
  */
 package footballmanager.gui;
 
+import footballmanager.Player;
+import footballmanager.Team;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Christian
@@ -14,6 +19,8 @@ public class CreateTeamScreen extends javax.swing.JFrame {
     /**
      * Creates new form CreateTeamScreen
      */
+    private Team team = new Team();
+    
     public CreateTeamScreen() {
         initComponents();
     }
@@ -30,21 +37,21 @@ public class CreateTeamScreen extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         LeagueLabel = new javax.swing.JLabel();
-        LeagueTextField = new java.awt.TextField();
+        TeamNameField = new java.awt.TextField();
         NextButton = new javax.swing.JButton();
         ReturnButton = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        RosterTable = new javax.swing.JTable();
         jPanel2 = new javax.swing.JPanel();
-        LeagueTextField1 = new java.awt.TextField();
+        PlayerFNameField = new java.awt.TextField();
         LeagueLabel1 = new javax.swing.JLabel();
         LeagueLabel2 = new javax.swing.JLabel();
-        LeagueTextField2 = new java.awt.TextField();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        PlayerLNameField = new java.awt.TextField();
+        PositionComboBox = new javax.swing.JComboBox<>();
         LeagueLabel3 = new javax.swing.JLabel();
         LeagueLabel4 = new javax.swing.JLabel();
-        jSpinner1 = new javax.swing.JSpinner();
-        jButton1 = new javax.swing.JButton();
+        PlayerNumberSpinner = new javax.swing.JSpinner();
+        AddPlayerButton = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -59,16 +66,21 @@ public class CreateTeamScreen extends javax.swing.JFrame {
         LeagueLabel.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         LeagueLabel.setText("Team Name:");
 
-        LeagueTextField.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        LeagueTextField.addActionListener(new java.awt.event.ActionListener() {
+        TeamNameField.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        TeamNameField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                LeagueTextFieldActionPerformed(evt);
+                TeamNameFieldActionPerformed(evt);
             }
         });
 
         NextButton.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         NextButton.setText("Create");
         NextButton.setPreferredSize(new java.awt.Dimension(100, 50));
+        NextButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                NextButtonActionPerformed(evt);
+            }
+        });
 
         ReturnButton.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         ReturnButton.setText("Return");
@@ -79,8 +91,8 @@ public class CreateTeamScreen extends javax.swing.JFrame {
             }
         });
 
-        jTable1.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        RosterTable.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        RosterTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -103,14 +115,14 @@ public class CreateTeamScreen extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(RosterTable);
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Add Player To Team (Optional)", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 12))); // NOI18N
 
-        LeagueTextField1.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        LeagueTextField1.addActionListener(new java.awt.event.ActionListener() {
+        PlayerFNameField.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        PlayerFNameField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                LeagueTextField1ActionPerformed(evt);
+                PlayerFNameFieldActionPerformed(evt);
             }
         });
 
@@ -122,15 +134,15 @@ public class CreateTeamScreen extends javax.swing.JFrame {
         LeagueLabel2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         LeagueLabel2.setText("Surname:");
 
-        LeagueTextField2.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        LeagueTextField2.addActionListener(new java.awt.event.ActionListener() {
+        PlayerLNameField.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        PlayerLNameField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                LeagueTextField2ActionPerformed(evt);
+                PlayerLNameFieldActionPerformed(evt);
             }
         });
 
-        jComboBox1.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "GK", "CD", "LB", "RB", "CDM", "CM", "CAM", "RM", "RW", "LM", "LW", "ST" }));
+        PositionComboBox.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        PositionComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "GK", "CD", "LB", "RB", "CDM", "CM", "CAM", "RM", "RW", "LM", "LW", "ST" }));
 
         LeagueLabel3.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         LeagueLabel3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -140,10 +152,15 @@ public class CreateTeamScreen extends javax.swing.JFrame {
         LeagueLabel4.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         LeagueLabel4.setText("Number:");
 
-        jSpinner1.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        PlayerNumberSpinner.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
 
-        jButton1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jButton1.setText("Add Player");
+        AddPlayerButton.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        AddPlayerButton.setText("Add Player");
+        AddPlayerButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AddPlayerButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -157,7 +174,7 @@ public class CreateTeamScreen extends javax.swing.JFrame {
                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
                             .addComponent(LeagueLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
-                            .addComponent(LeagueTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(PlayerFNameField, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
                             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addComponent(LeagueLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -167,13 +184,13 @@ public class CreateTeamScreen extends javax.swing.JFrame {
                                 .addGroup(jPanel2Layout.createSequentialGroup()
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(PositionComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(PlayerNumberSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGap(0, 439, Short.MAX_VALUE))
                                 .addGroup(jPanel2Layout.createSequentialGroup()
                                     .addGap(23, 23, 23)
-                                    .addComponent(LeagueTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE))))
-                        .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addComponent(PlayerLNameField, javax.swing.GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE))))
+                        .addComponent(AddPlayerButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addContainerGap()))
         );
         jPanel2Layout.setVerticalGroup(
@@ -183,22 +200,22 @@ public class CreateTeamScreen extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createSequentialGroup()
                     .addGap(39, 39, 39)
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(LeagueTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(PlayerFNameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(LeagueLabel1))
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(LeagueTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(PlayerLNameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(LeagueLabel2))
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(PositionComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(LeagueLabel3))
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(PlayerNumberSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(LeagueLabel4))
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(AddPlayerButton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
 
@@ -222,7 +239,7 @@ public class CreateTeamScreen extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(LeagueLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
-                        .addComponent(LeagueTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 495, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(TeamNameField, javax.swing.GroupLayout.PREFERRED_SIZE, 495, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(20, 20, 20))
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jScrollPane1))
@@ -233,7 +250,7 @@ public class CreateTeamScreen extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(27, 27, 27)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(LeagueTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(TeamNameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(LeagueLabel))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -269,23 +286,65 @@ public class CreateTeamScreen extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void LeagueTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LeagueTextFieldActionPerformed
+    private void TeamNameFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TeamNameFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_LeagueTextFieldActionPerformed
+    }//GEN-LAST:event_TeamNameFieldActionPerformed
 
-    private void LeagueTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LeagueTextField1ActionPerformed
+    private void PlayerFNameFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PlayerFNameFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_LeagueTextField1ActionPerformed
+    }//GEN-LAST:event_PlayerFNameFieldActionPerformed
 
-    private void LeagueTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LeagueTextField2ActionPerformed
+    private void PlayerLNameFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PlayerLNameFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_LeagueTextField2ActionPerformed
+    }//GEN-LAST:event_PlayerLNameFieldActionPerformed
 
     private void ReturnButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ReturnButtonActionPerformed
         CreateLeagueScreen home = new CreateLeagueScreen();
         home.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_ReturnButtonActionPerformed
+
+    private void AddPlayerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddPlayerButtonActionPerformed
+        // TODO add your handling code here:
+        if (!PlayerLNameField.getText().isEmpty()){
+            if (!PlayerFNameField.getText().isEmpty()){
+                if ((Integer) PlayerNumberSpinner.getValue() > 0){     //  && playernumber !exist(RosterTable )
+                    String lName = PlayerLNameField.getText();
+                    String fName = PlayerFNameField.getText();
+                    String position = (String) PositionComboBox.getSelectedItem();
+                    int number = (Integer) PlayerNumberSpinner.getValue();
+                    
+                    Player player = new Player(fName, lName, position, number);
+                    team.addPlayer(player);
+
+                    CreateTeamScreen create = new CreateTeamScreen();
+                    create.setVisible(true);
+                    this.setVisible(false);
+                }
+                else {
+                    JOptionPane.showMessageDialog(PositionComboBox, "Player Must Have A Number", "Error", HEIGHT);
+                }
+            }
+            else {
+                JOptionPane.showMessageDialog(PositionComboBox, "Please Enter Player's First Name Before Proceeding", "Error", HEIGHT);
+            }
+        }
+        else {
+            JOptionPane.showMessageDialog(PositionComboBox, "Please Enter Player's Surname Before Proceeding", "Error", HEIGHT);
+        }
+        
+    }//GEN-LAST:event_AddPlayerButtonActionPerformed
+
+    private void NextButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NextButtonActionPerformed
+        // TODO add your handling code here:
+        if (!TeamNameField.getText().isEmpty()){
+            team.setName(TeamNameField.getText());
+            
+        }
+        else {
+            JOptionPane.showMessageDialog(TeamNameField, "Please Enter Team Name Before Proceeding", "Error", HEIGHT);
+        }
+    }//GEN-LAST:event_NextButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -323,24 +382,24 @@ public class CreateTeamScreen extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton AddPlayerButton;
     private javax.swing.JLabel LeagueLabel;
     private javax.swing.JLabel LeagueLabel1;
     private javax.swing.JLabel LeagueLabel2;
     private javax.swing.JLabel LeagueLabel3;
     private javax.swing.JLabel LeagueLabel4;
-    private java.awt.TextField LeagueTextField;
-    private java.awt.TextField LeagueTextField1;
-    private java.awt.TextField LeagueTextField2;
     private javax.swing.JButton NextButton;
+    private java.awt.TextField PlayerFNameField;
+    private java.awt.TextField PlayerLNameField;
+    private javax.swing.JSpinner PlayerNumberSpinner;
+    private javax.swing.JComboBox<String> PositionComboBox;
     private javax.swing.JButton ReturnButton;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JTable RosterTable;
+    private java.awt.TextField TeamNameField;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JSpinner jSpinner1;
-    private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
 }

@@ -17,10 +17,10 @@ public class MainApp {
 		Player player1;
 		
 		System.out.println("How many teams?: ");
-		int t = keyb.nextInt();
+		int teamCount = keyb.nextInt();
 		keyb.nextLine();
 		
-		while(t > 0 ) {
+		while(teamCount > 0 ) {
 			System.out.println("Enter Team Name: ");
 			String teamName = keyb.next();
 			team1 = new Team(teamName);
@@ -51,7 +51,7 @@ public class MainApp {
 			}
 			
 			league.add(team1);
-			t--;
+			teamCount--;
 		}
 		
 		ScheduleMaker schedule = new ScheduleMaker(league);
